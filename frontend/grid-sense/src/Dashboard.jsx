@@ -188,6 +188,13 @@ export default function Dashboard() {
                       currentState === "fault" ? "#facc15" :
                       "#00aaff"; 
 
+  const technicalLoss = Math.min((pqMetrics.thd * 0.4) + (currentPt.current * 0.5) + 2, 45); 
+  const commercialLoss = Math.min((pqMetrics.entropy * 6) + (isUnstable ? 5 : 1), 35); 
+  const totalLoss = technicalLoss + commercialLoss;
+
+  const techLossWidth = (technicalLoss / Math.max(totalLoss, 1)) * 100;
+  const commLossWidth = (commercialLoss / Math.max(totalLoss, 1)) * 100;
+
   return (
     <div className="dashboard-layout" style={{ display: 'flex', flexDirection: 'column' }}>
       
@@ -412,42 +419,60 @@ export default function Dashboard() {
             </div>
 
             {}
-            <div className="metrics-section">
-               <div className="metric-card border-glow-blue" style={{ borderLeft: `3px solid var(--neon-blue)` }}>
-                 <div className="metric-label">ENTROPY SCORE</div>
-                 <div className="metric-val">{typeof pqMetrics.entropy === 'number' ? pqMetrics.entropy.toFixed(4) : "0.0000"}</div>
-                 <div className="metric-sub">STOCHASTIC VARIANCE MODEL</div>
-               </div>
-
-               <div className={`metric-card container border-glow-${currentState==='attack' ? 'red' : currentState==='fault' ? 'yellow' : 'blue'}`} style={{ borderLeft: `3px solid ${statusColor}` }}>
-                 <div className="metric-label">FREQUENCY STATUS</div>
-                 <div className="metric-val" style={{color: isUnstable ? 'var(--neon-red)' : 'var(--text-main)'}}>
-                    {isUnstable ? "UNSTABLE" : "STABLE"}
+            <div className="metrics-section" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 1.2 }}>
+               {}
+               <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: '10px' }}>
+                 <div className="metric-card border-glow-blue" style={{ padding: '1rem', minHeight: '100px', borderLeft: `3px solid var(--neon-blue)` }}>
+                   <div className="metric-label" style={{ fontSize: '0.75rem' }}>ENTROPY SCORE</div>
+                   <div className="metric-val" style={{ fontSize: '1.8rem', marginTop: '5px' }}>{typeof pqMetrics.entropy === 'number' ? pqMetrics.entropy.toFixed(4) : "0.0000"}</div>
                  </div>
-                 <div style={{width:'100%', height:'4px', background:'var(--border-color)', marginTop:'10px', borderRadius:'2px'}}>
-                   <div style={{width: isUnstable ? '90%' : '30%', height:'100%', background: isUnstable ? 'var(--neon-red)' : 'var(--neon-blue)', transition:'width 0.3s', borderRadius:'2px'}}></div>
-                 </div>
-               </div>
 
-               <div className={`metric-card border-glow-${currentState==='attack' ? 'red' : currentState==='fault' ? 'yellow' : 'blue'}`} style={{ borderLeft: `3px solid ${statusColor}` }}>
-                 <div className="metric-label">ALERT TYPE</div>
-                 <div className="metric-val" style={{fontSize: '1.2rem', marginTop: '10px', color: statusColor}}>{alertType}</div>
-                 <div style={{display:'flex', gap:'10px', marginTop:'15px'}}>
-                   <span style={{fontSize:'0.65rem', padding:'3px 8px', border:'1px solid var(--border-color)', color:'var(--text-muted)'}}>PRIORITY {isUnstable ? '1' : '3'}</span>
-                 </div>
-               </div>
-
-               <div className={`metric-card border-glow-${currentState==='attack' ? 'red' : currentState==='fault' ? 'yellow' : 'blue'}`} style={{background: currentState==='attack' ? 'rgba(255, 51, 102, 0.02)' : currentState==='fault' ? 'rgba(250, 204, 21, 0.02)' : 'rgba(0,170,255,0.02)', borderLeft: `3px solid ${statusColor}` }}>
-                 <div className="metric-label">AI DECISION</div>
-                 <div className="metric-val" style={{fontSize: '1.4rem', marginTop: '10px'}}>{decision}</div>
-                 <div style={{marginTop:'auto', paddingTop:'15px', display:'flex', flexDirection:'column', gap:'8px', fontSize:'0.75rem', fontWeight:600}}>
-                   <div style={{display:'flex', justifyContent:'space-between', borderBottom:'1px solid var(--border-color)', paddingBottom:'5px'}}>
-                     <span style={{color:'var(--text-muted)'}}>RELIABILITY</span><span style={{color: statusColor}}>99.8%</span>
-                   </div>
-                   <div style={{display:'flex', justifyContent:'space-between'}}>
-                     <span style={{color:'var(--text-muted)'}}>LATENCY</span><span style={{color:'var(--neon-blue)'}}>12MS</span>
+                 <div className={`metric-card border-glow-${currentState==='attack' ? 'red' : currentState==='fault' ? 'yellow' : 'blue'}`} style={{ padding: '1rem', minHeight: '100px', borderLeft: `3px solid ${statusColor}` }}>
+                   <div className="metric-label" style={{ fontSize: '0.75rem' }}>FREQ. STATUS</div>
+                   <div className="metric-val" style={{ fontSize: '1.4rem', marginTop: '5px', color: isUnstable ? 'var(--neon-red)' : 'var(--text-main)' }}>
+                      {isUnstable ? "UNSTABLE" : "STABLE"}
                    </div>
                  </div>
+
+                 <div className={`metric-card border-glow-${currentState==='attack' ? 'red' : currentState==='fault' ? 'yellow' : 'blue'}`} style={{ padding: '1rem', minHeight: '100px', borderLeft: `3px solid ${statusColor}` }}>
+                   <div className="metric-label" style={{ fontSize: '0.75rem' }}>ALERT TYPE</div>
+                   <div className="metric-val" style={{ fontSize: '1rem', marginTop: '10px', color: statusColor, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{alertType}</div>
+                 </div>
+
+                 <div className={`metric-card border-glow-${currentState==='attack' ? 'red' : currentState==='fault' ? 'yellow' : 'blue'}`} style={{ padding: '1rem', minHeight: '100px', background: currentState==='attack' ? 'rgba(255, 51, 102, 0.02)' : currentState==='fault' ? 'rgba(250, 204, 21, 0.02)' : 'rgba(0,170,255,0.02)', borderLeft: `3px solid ${statusColor}` }}>
+                   <div className="metric-label" style={{ fontSize: '0.75rem' }}>AI DECISION</div>
+                   <div className="metric-val" style={{ fontSize: '1.1rem', marginTop: '10px' }}>{decision}</div>
+                 </div>
+               </div>
+
+               {}
+               <div className="metric-card" style={{ flex: 1, padding: '1.5rem', display: 'flex', flexDirection: 'column', background: 'rgba(20, 25, 40, 0.4)', border: '1px solid rgba(255,255,255,0.1)', boxShadow: 'inset 0 0 20px rgba(0,0,0,0.5)', minHeight: '220px' }}>
+                  <div className="chart-title" style={{ marginBottom: '15px' }}>AT&C LOSS ATTRIBUTION</div>
+                  
+                  <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: '15px', marginBottom: '20px' }}>
+                     <div style={{ background: 'rgba(255, 51, 102, 0.05)', border: '1px solid rgba(255, 51, 102, 0.2)', padding: '15px', borderRadius: '6px', textAlign: 'center', boxShadow: '0 0 10px rgba(255, 51, 102, 0.1)' }}>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 700, textTransform: 'uppercase' }}>Technical Loss</div>
+                        <div style={{ fontSize: '2.2rem', color: 'var(--neon-red)', fontWeight: 800, margin: '5px 0', textShadow: '0 0 8px rgba(255, 51, 102, 0.5)' }}>{technicalLoss.toFixed(1)}%</div>
+                        <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Heat / Harmonic Loss</div>
+                     </div>
+                     
+                     <div style={{ background: 'rgba(250, 204, 21, 0.05)', border: '1px solid rgba(250, 204, 21, 0.2)', padding: '15px', borderRadius: '6px', textAlign: 'center', boxShadow: '0 0 10px rgba(250, 204, 21, 0.1)' }}>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 700, textTransform: 'uppercase' }}>Commercial Loss</div>
+                        <div style={{ fontSize: '2.2rem', color: 'var(--neon-yellow)', fontWeight: 800, margin: '5px 0', textShadow: '0 0 8px rgba(250, 204, 21, 0.5)' }}>{commercialLoss.toFixed(1)}%</div>
+                        <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Theft / Unmetered Usage</div>
+                     </div>
+                  </div>
+
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.85rem', fontWeight: 700 }}>
+                        <span style={{ color: 'var(--text-main)' }}>Total Aggregate Loss: {totalLoss.toFixed(1)}%</span>
+                        <span style={{ color: 'var(--text-muted)' }}>100% SCALE</span>
+                     </div>
+                     <div style={{ height: '12px', display: 'flex', width: '100%', borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--border-color)', background: 'var(--bg-main)' }}>
+                        <div style={{ width: `${techLossWidth}%`, background: 'var(--neon-red)', boxShadow: '0 0 10px var(--neon-red)', transition: 'width 0.3s' }}></div>
+                        <div style={{ width: `${commLossWidth}%`, background: 'var(--neon-yellow)', boxShadow: '0 0 10px var(--neon-yellow)', transition: 'width 0.3s' }}></div>
+                     </div>
+                  </div>
                </div>
             </div>
           </div>
