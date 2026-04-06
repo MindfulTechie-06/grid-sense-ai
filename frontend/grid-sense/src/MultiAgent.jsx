@@ -17,7 +17,7 @@ export default function MultiAgent() {
     setLogs(prev => [msg, ...prev].slice(0, 50)); 
   };
 
-  // Event sequence logic
+  
   useEffect(() => {
     if (cloudCover) {
       addLog("☀️ Solar Agent → Output reduced due to cloud");
@@ -63,7 +63,7 @@ export default function MultiAgent() {
     }
   }, [highDemand]);
 
-  // Derived states
+  
   const isCloudy = cloudCover;
   const isStressed = highDemand;
   
@@ -75,31 +75,19 @@ export default function MultiAgent() {
 
   return (
     <div className="dashboard-layout" style={{overflowY: 'auto'}}>
-      {/* SIDEBAR */}
+      {}
       <aside className="sidebar" style={{position:'sticky', top:'1rem', alignSelf:'flex-start'}}>
         <div className="brand">GRIDSENSE AI</div>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
-            <div style={{width:'32px', height:'32px', background:'rgba(0,255,136,0.1)', border:'1px solid var(--neon-green)', borderRadius:'4px', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--neon-green)'}}>
-              <span role="img" aria-label="operator" style={{fontSize: '1.2rem'}}>🥷</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginTop: '20px', padding: '15px', background: 'rgba(0,255,136,0.05)', borderRadius: '8px', border: '1px solid rgba(0,255,136,0.2)' }}>
+            <div style={{width:'50px', height:'50px', background:'rgba(0,255,136,0.1)', border:'2px solid var(--neon-green)', borderRadius:'6px', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--neon-green)', boxShadow: '0 0 10px rgba(0,255,136,0.3)'}}>
+              <span role="img" aria-label="operator" style={{fontSize: '1.8rem'}}>🥷</span>
             </div>
-            <div>
-              <div style={{fontSize:'0.75rem', color:'var(--neon-green)', fontWeight:700}}>OPERATOR_01</div>
-              <div style={{fontSize:'0.65rem', color:'var(--text-muted)'}}>SECTOR_7G</div>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <div style={{fontSize:'1.2rem', color:'var(--neon-green)', fontWeight:900, letterSpacing: '1px', textShadow: '0 0 5px var(--neon-green)'}}>OPERATOR_01</div>
+              <div style={{fontSize:'0.85rem', color:'var(--text-muted)', fontWeight:600, letterSpacing: '2px'}}>SECTOR_7G</div>
             </div>
         </div>
-
-        <nav className="nav-menu" style={{marginTop:'20px'}}>
-          <Link to="/" className="nav-item" style={{textDecoration:'none'}}>
-            <span role="img" aria-label="dash">⚏</span> DASHBOARD
-          </Link>
-          <Link to="/multi-agent" className="nav-item active" style={{textDecoration:'none'}}>
-            <span role="img" aria-label="map" style={{color:'var(--neon-green)'}}>🤖</span> MULTI-AGENT
-          </Link>
-          <div className="nav-item"><span role="img" aria-label="data">🗄️</span> DATA SHELL</div>
-          <div className="nav-item"><span role="img" aria-label="sensors">📡</span> SENSORS</div>
-          <div className="nav-item"><span role="img" aria-label="security">🛡️</span> SECURITY</div>
-        </nav>
 
         <div className="control-panel" style={{marginTop:'10px'}}>
           <div className="control-title">SIMULATION PANEL</div>
@@ -128,24 +116,24 @@ export default function MultiAgent() {
         </div>
       </aside>
 
-      {/* MAIN CONTENT */}
+      {}
       <main className="main-content" style={{overflowY: 'visible'}}>
         
-        {/* Header Links */}
-        <div style={{display:'flex', justifyContent:'space-between', padding:'0 10px', fontSize:'0.85rem', color:'var(--text-muted)', fontWeight:600}}>
-          <div style={{display:'flex', gap:'25px'}}>
-            <Link to="/" style={{color:'var(--text-muted)', textDecoration:'none', cursor:'pointer', transition:'color 0.2s'}}>TELEMETRY</Link>
-            <Link to="/multi-agent" style={{color:'var(--neon-green)', textDecoration:'none', borderBottom:'2px solid var(--neon-green)', paddingBottom:'5px', cursor:'pointer'}}>MULTI-AGENT</Link>
-            <span style={{cursor:'pointer', transition:'color 0.2s'}}>NETWORK</span>
-            <span style={{cursor:'pointer', transition:'color 0.2s'}}>ALERTS</span>
+        {}
+        <div style={{display:'flex', justifyContent:'space-between', padding:'10px 20px', fontSize:'1.1rem', color:'var(--text-muted)', fontWeight:700, alignItems:'center', background:'rgba(0,0,0,0.2)', borderBottom:'1px solid rgba(0,255,136,0.1)'}}>
+          <div style={{display:'flex', gap:'40px', alignItems:'center'}}>
+            <Link to="/" style={{color:'var(--text-muted)', textDecoration:'none', padding:'10px 15px', cursor:'pointer', transition:'all 0.3s'}} onMouseOver={e => {e.target.style.color='var(--text-main)'; e.target.style.textShadow='0 0 5px rgba(255,255,255,0.5)'}} onMouseOut={e => {e.target.style.color='var(--text-muted)'; e.target.style.textShadow='none'}}>TELEMETRY</Link>
+            <Link to="/multi-agent" style={{color:'var(--neon-green)', textDecoration:'none', borderBottom:'3px solid var(--neon-green)', padding:'10px 15px', cursor:'pointer', textShadow:'0 0 8px var(--neon-green)', boxShadow:'inset 0 -15px 15px -15px var(--neon-green)'}}>MULTI-AGENT</Link>
+            <span style={{padding:'10px 15px', cursor:'pointer', transition:'all 0.3s'}} onMouseOver={e => {e.target.style.color='var(--text-main)'; e.target.style.textShadow='0 0 5px rgba(255,255,255,0.5)'}} onMouseOut={e => {e.target.style.color='var(--text-muted)'; e.target.style.textShadow='none'}}>NETWORK</span>
+            <span style={{padding:'10px 15px', cursor:'pointer', transition:'all 0.3s'}} onMouseOver={e => {e.target.style.color='var(--text-main)'; e.target.style.textShadow='0 0 5px rgba(255,255,255,0.5)'}} onMouseOut={e => {e.target.style.color='var(--text-muted)'; e.target.style.textShadow='none'}}>ALERTS</span>
           </div>
-          <div style={{display:'flex', gap:'20px', color:'var(--neon-green)', fontSize:'1.1rem', cursor:'pointer'}}>
-             <span>⚙️</span>
-             <span>🔔</span>
+          <div style={{display:'flex', gap:'25px', color:'var(--neon-green)', fontSize:'1.4rem', cursor:'pointer'}}>
+             <span style={{transition:'transform 0.2s', padding:'5px'}} onMouseOver={e => e.target.style.transform='rotate(45deg)'} onMouseOut={e => e.target.style.transform='rotate(0deg)'}>⚙️</span>
+             <span style={{transition:'transform 0.2s', padding:'5px'}} onMouseOver={e => e.target.style.transform='scale(1.1)'} onMouseOut={e => e.target.style.transform='scale(1)'}>🔔</span>
           </div>
         </div>
 
-        {/* 1. Page Header */}
+        {}
         <div style={{paddingLeft: '10px', marginTop: '5px', marginBottom:'10px'}}>
            <h1 style={{fontSize:'2.2rem', color:'var(--neon-green)', margin:0, textShadow:'0 0 10px var(--neon-green-dim)', textTransform:'uppercase'}}>Multi-Agent Grid Orchestrator</h1>
            <h2 style={{fontSize:'1rem', color:'var(--text-muted)', margin:'5px 0 0 0', fontWeight:600, letterSpacing:'1px', textTransform:'uppercase'}}>Decentralized Autonomous Grid Intelligence</h2>
@@ -153,60 +141,60 @@ export default function MultiAgent() {
 
         <div style={{display:'flex', gap:'1.5rem', flexWrap:'wrap', flex:1}}>
           
-          {/* Left Column: Visual System + Explanation */}
+          {}
           <div style={{flex: 1.5, display:'flex', flexDirection:'column', gap:'1.5rem', minWidth:'400px'}}>
              
-             {/* Swarm Topology */}
+             {}
              <div className="chart-section" style={{flex:2, position:'relative', minHeight:'350px'}}>
                <div className="chart-title mb-4">SWARM TOPOLOGY (6-NODE NETWORK)</div>
                <div style={{position:'absolute', top:'2rem', left:0, right:0, bottom:0, display:'flex', alignItems:'center', justifyContent:'center'}}>
                    
-                   {/* Connection Lines (SVG) */}
+                   {}
                    <svg width="100%" height="100%" style={{position:'absolute', zIndex:0}}>
-                      {/* Transformer center = 50%,50% */}
-                      {/* Solar to Transformer */}
+                      {}
+                      {}
                       <line x1="50%" y1="15%" x2="50%" y2="50%" stroke={cloudCover ? 'rgba(100,100,100,0.5)' : 'var(--neon-green)'} strokeWidth="3" strokeDasharray="5,5" className={activeStep===1 ? 'anim-line-svg' : (!cloudCover ? 'anim-line-svg' : '')}/>
-                      {/* Battery to Transformer */}
+                      {}
                       <line x1="85%" y1="35%" x2="50%" y2="50%" stroke={activeStep>=2 ? 'var(--neon-blue)' : 'rgba(100,100,100,0.5)'} strokeWidth="3" strokeDasharray="5,5" className={activeStep>=2 ? 'anim-line-svg' : ''}/>
-                      {/* EV to Transformer */}
+                      {}
                       <line x1="80%" y1="75%" x2="50%" y2="50%" stroke={activeStep>=4 ? 'var(--neon-red)' : 'var(--neon-green)'} strokeWidth="3" strokeDasharray="5,5" className={activeStep>=4 ? 'anim-line-svg' : 'anim-line-svg'}/>
-                      {/* Res to Transformer */}
+                      {}
                       <line x1="20%" y1="75%" x2="50%" y2="50%" stroke={activeStep>=5 ? 'var(--neon-red)' : 'var(--neon-green)'} strokeWidth="3" strokeDasharray="5,5" className={activeStep>=5 ? 'anim-line-svg' : 'anim-line-svg'}/>
-                      {/* Hospital to Transformer */}
+                      {}
                       <line x1="15%" y1="35%" x2="50%" y2="50%" stroke={'var(--neon-green)'} strokeWidth="4" className={'anim-line-svg'}/>
                    </svg>
                    
-                   {/* Solar Node (Top) */}
+                   {}
                    <div className={`agent-node ${cloudCover ? 'warning' : ''}`} style={{top: '15%', left: '50%', transform:'translate(-50%, -50%)', borderColor:activeStep===1?'var(--neon-red)':'var(--neon-green)'}}>
                       ☀️
                       <div style={{position:'absolute', bottom:'-25px', fontSize:'0.7rem', color:'var(--text-main)', whiteSpace:'nowrap', fontWeight:700}}>SOLAR AGENT</div>
                    </div>
 
-                   {/* Battery Node (Top Right) */}
+                   {}
                    <div className={`agent-node ${activeStep>=2 ? 'discharging' : ''}`} style={{top: '35%', left: '85%', transform:'translate(-50%, -50%)'}}>
                       🔋
                       <div style={{position:'absolute', bottom:'-25px', fontSize:'0.7rem', color:'var(--text-main)', whiteSpace:'nowrap', fontWeight:700}}>BATTERY AGENT</div>
                    </div>
 
-                   {/* EV Node (Bottom Right) */}
+                   {}
                    <div className={`agent-node ${activeStep>=4 ? 'warning' : ''}`} style={{top: '75%', left: '80%', transform:'translate(-50%, -50%)', borderColor:activeStep>=4?'var(--neon-red)':'var(--neon-green)'}}>
                       🚗
                       <div style={{position:'absolute', bottom:'-25px', fontSize:'0.7rem', color:'var(--text-main)', whiteSpace:'nowrap', fontWeight:700}}>EV AGENT</div>
                    </div>
 
-                   {/* Residential Node (Bottom Left) */}
+                   {}
                    <div className={`agent-node ${activeStep>=5 ? 'warning' : ''}`} style={{top: '75%', left: '20%', transform:'translate(-50%, -50%)', borderColor:activeStep>=5?'var(--neon-red)':'var(--neon-green)'}}>
                       🏠
                       <div style={{position:'absolute', bottom:'-25px', fontSize:'0.7rem', color:'var(--text-main)', whiteSpace:'nowrap', fontWeight:700}}>RESIDENTIAL AGENT</div>
                    </div>
 
-                   {/* Hospital Node (Top Left) */}
+                   {}
                    <div className={`agent-node`} style={{top: '35%', left: '15%', transform:'translate(-50%, -50%)', border:'3px solid var(--neon-green)', background:'rgba(0,255,136,0.2)', boxShadow:'0 0 20px var(--neon-green)'}}>
                       🏥
                       <div style={{position:'absolute', bottom:'-25px', fontSize:'0.7rem', color:'var(--text-main)', whiteSpace:'nowrap', fontWeight:700}}>HOSPITAL (CRITICAL)</div>
                    </div>
 
-                   {/* Transformer Node (Center) */}
+                   {}
                    <div className={`agent-node`} style={{top: '50%', left: '50%', transform:'translate(-50%, -50%)', borderColor:'var(--text-muted)', boxShadow:'none', background:'var(--bg-main)', zIndex:2, width:'80px', height:'80px', fontSize:'2.5rem'}}>
                       ⚡
                       <div style={{position:'absolute', bottom:'-28px', fontSize:'0.8rem', color:'var(--text-main)', whiteSpace:'nowrap', fontWeight:700, textShadow:'0 0 5px #000'}}>TRANSFORMER</div>
@@ -214,7 +202,7 @@ export default function MultiAgent() {
                </div>
              </div>
 
-             {/* Explanation Card */}
+             {}
              <div className="metric-card" style={{padding:'1.5rem', background:'rgba(0,255,136,0.02)', borderLeft:'3px solid var(--neon-green)'}}>
                <div className="chart-title">HOW MULTI-AGENT SYSTEM WORKS</div>
                <p style={{fontSize:'0.85rem', color:'var(--text-main)', lineHeight:1.6, margin:0, marginTop:'10px'}}>
@@ -224,13 +212,13 @@ export default function MultiAgent() {
 
           </div>
 
-          {/* Right Column: Engine, Logic, Logs */}
+          {}
           <div style={{flex: 1.5, display:'flex', flexDirection:'column', gap:'1.5rem', minWidth:'400px'}}>
              
-             {/* Priority Engine Header & Response Panel */}
+             {}
              <div style={{display:'flex', gap:'1.5rem'}}>
                  
-                 {/* Priority Engine (Vertical List) */}
+                 {}
                  <div className="metric-card" style={{flex:1, padding:'1.5rem', background:'rgba(0,0,0,0.2)'}}>
                     <div className="chart-title mb-2">DECISION PRIORITY ENGINE</div>
                     <div style={{display:'flex', flexDirection:'column', gap:'8px', marginTop:'10px'}}>
@@ -256,7 +244,7 @@ export default function MultiAgent() {
                     </div>
                  </div>
 
-                 {/* System Behavior Panel */}
+                 {}
                  <div className="metric-card" style={{flex:1.2, padding:'1.5rem'}}>
                     <div className="chart-title">AGENT DECISION STATE</div>
                     <div style={{display:'flex', flexDirection:'column', gap:'12px', marginTop:'10px'}}>
@@ -285,7 +273,7 @@ export default function MultiAgent() {
 
              </div>
 
-             {/* System Log */}
+             {} 
              <div className="metric-card" style={{flex:1, minHeight:'200px', padding:'1.5rem'}}>
                 <div className="chart-title" style={{marginBottom:'15px'}}>LIVE SYSTEM LOG // DECISION TRAP</div>
                 <div style={{display:'flex', flexDirection:'column', gap:'8px', height:'180px', overflowY:'auto', paddingRight:'5px'}}>

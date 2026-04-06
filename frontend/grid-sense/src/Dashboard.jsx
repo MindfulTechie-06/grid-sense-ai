@@ -253,24 +253,15 @@ export default function Dashboard() {
           </div>
           
           <div className={`sidebar-content ${isMobileMenuOpen ? 'open' : ''}`}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
-                <div style={{width:'32px', height:'32px', background:'rgba(0,170,255,0.1)', border:'1px solid var(--neon-blue)', borderRadius:'4px', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--neon-blue)'}}>
-                  <span role="img" aria-label="operator" style={{fontSize: '1.2rem'}}>🥷</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginTop: '20px', padding: '15px', background: 'rgba(0,170,255,0.05)', borderRadius: '8px', border: '1px solid rgba(0,170,255,0.2)' }}>
+                <div style={{width:'50px', height:'50px', background:'rgba(0,170,255,0.1)', border:'2px solid var(--neon-blue)', borderRadius:'6px', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--neon-blue)', boxShadow: '0 0 10px rgba(0,170,255,0.3)'}}>
+                  <span role="img" aria-label="operator" style={{fontSize: '1.8rem'}}>🥷</span>
                 </div>
-                <div>
-                  <div style={{fontSize:'0.75rem', color:'var(--neon-blue)', fontWeight:700}}>OPERATOR_01</div>
-                  <div style={{fontSize:'0.65rem', color:'var(--text-muted)'}}>SECTOR_7G</div>
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div style={{fontSize:'1.2rem', color:'var(--neon-blue)', fontWeight:900, letterSpacing: '1px', textShadow: '0 0 5px var(--neon-blue)'}}>OPERATOR_01</div>
+                  <div style={{fontSize:'0.85rem', color:'var(--text-muted)', fontWeight:600, letterSpacing: '2px'}}>SECTOR_7G</div>
                 </div>
             </div>
-
-            <nav className="nav-menu" style={{marginTop:'20px'}}>
-              <Link to="/" className="nav-item active" style={{textDecoration:'none', borderLeftColor: 'var(--neon-blue)', color: 'var(--neon-blue)'}} onClick={() => setIsMobileMenuOpen(false)}>
-                <span role="img" aria-label="dash" style={{color:'var(--neon-blue)'}}>⚏</span> DASHBOARD
-              </Link>
-              <Link to="/multi-agent" className="nav-item" style={{textDecoration:'none'}} onClick={() => setIsMobileMenuOpen(false)}>
-                <span role="img" aria-label="map"></span> MULTI-AGENT
-              </Link>
-            </nav>
 
             <div className="control-panel" style={{marginTop:'10px'}}>
               <div className="control-title" style={{color: 'var(--neon-blue)'}}>POWER QUALITY METRICS</div>
@@ -337,16 +328,16 @@ export default function Dashboard() {
         <main className="main-content">
           
           {}
-          <div style={{display:'flex', justifyContent:'space-between', padding:'0 10px', fontSize:'0.85rem', color:'var(--text-muted)', fontWeight:600}}>
-            <div style={{display:'flex', gap:'25px'}}>
-              <Link to="/" style={{color:'var(--neon-blue)', textDecoration:'none', borderBottom:'2px solid var(--neon-blue)', paddingBottom:'5px', cursor:'pointer'}}>TELEMETRY</Link>
-              <Link to="/multi-agent" style={{color:'var(--text-muted)', textDecoration:'none', cursor:'pointer', transition:'color 0.2s'}} onMouseOver={e => e.target.style.color='var(--text-main)'} onMouseOut={e => e.target.style.color='var(--text-muted)'}>MULTI-AGENT</Link>
-              <span style={{cursor:'pointer', transition:'color 0.2s'}} onMouseOver={e => e.target.style.color='var(--text-main)'} onMouseOut={e => e.target.style.color='var(--text-muted)'}>NETWORK</span>
-              <span style={{cursor:'pointer', transition:'color 0.2s'}} onMouseOver={e => e.target.style.color='var(--text-main)'} onMouseOut={e => e.target.style.color='var(--text-muted)'}>ALERTS</span>
+          <div style={{display:'flex', justifyContent:'space-between', padding:'10px 20px', fontSize:'1.1rem', color:'var(--text-muted)', fontWeight:700, alignItems:'center', background:'rgba(0,0,0,0.2)', borderBottom:'1px solid rgba(0,170,255,0.1)'}}>
+            <div style={{display:'flex', gap:'40px', alignItems:'center'}}>
+              <Link to="/" style={{color:'var(--neon-blue)', textDecoration:'none', borderBottom:'3px solid var(--neon-blue)', padding:'10px 15px', cursor:'pointer', textShadow:'0 0 8px var(--neon-blue)', boxShadow:'inset 0 -15px 15px -15px var(--neon-blue)'}}>TELEMETRY</Link>
+              <Link to="/multi-agent" style={{color:'var(--text-muted)', textDecoration:'none', padding:'10px 15px', cursor:'pointer', transition:'all 0.3s'}} onMouseOver={e => {e.target.style.color='var(--text-main)'; e.target.style.textShadow='0 0 5px rgba(255,255,255,0.5)'}} onMouseOut={e => {e.target.style.color='var(--text-muted)'; e.target.style.textShadow='none'}}>MULTI-AGENT</Link>
+              <span style={{padding:'10px 15px', cursor:'pointer', transition:'all 0.3s'}} onMouseOver={e => {e.target.style.color='var(--text-main)'; e.target.style.textShadow='0 0 5px rgba(255,255,255,0.5)'}} onMouseOut={e => {e.target.style.color='var(--text-muted)'; e.target.style.textShadow='none'}}>NETWORK</span>
+              <span style={{padding:'10px 15px', cursor:'pointer', transition:'all 0.3s'}} onMouseOver={e => {e.target.style.color='var(--text-main)'; e.target.style.textShadow='0 0 5px rgba(255,255,255,0.5)'}} onMouseOut={e => {e.target.style.color='var(--text-muted)'; e.target.style.textShadow='none'}}>ALERTS</span>
             </div>
-            <div style={{display:'flex', gap:'20px', color:'var(--neon-blue)', fontSize:'1.1rem', cursor:'pointer'}}>
-               <span>⚙️</span>
-               <span>🔔</span>
+            <div style={{display:'flex', gap:'25px', color:'var(--neon-blue)', fontSize:'1.4rem', cursor:'pointer'}}>
+               <span style={{transition:'transform 0.2s', padding:'5px'}} onMouseOver={e => e.target.style.transform='rotate(45deg)'} onMouseOut={e => e.target.style.transform='rotate(0deg)'}>⚙️</span>
+               <span style={{transition:'transform 0.2s', padding:'5px'}} onMouseOver={e => e.target.style.transform='scale(1.1)'} onMouseOut={e => e.target.style.transform='scale(1)'}>🔔</span>
             </div>
           </div>
 
@@ -380,7 +371,7 @@ export default function Dashboard() {
                            const offsetStr = `${(index / Math.max(1, waveData.length - 1)) * 100}%`;
                            const colorCode = d.blockState === 'attack' ? '#ff3366' : d.blockState === 'fault' ? '#facc15' : '#00aaff';
                            
-                           // Apply structural fade out on the trailing end
+                           
                            const fadeZone = waveData.length * 0.15;
                            const alpha = index < fadeZone ? (index / fadeZone) : 1;
                            
@@ -420,7 +411,7 @@ export default function Dashboard() {
               
             </div>
 
-            {/* 3. RIGHT PANEL (Main Metrics) */}
+            {}
             <div className="metrics-section">
                <div className="metric-card border-glow-blue" style={{ borderLeft: `3px solid var(--neon-blue)` }}>
                  <div className="metric-label">ENTROPY SCORE</div>
@@ -461,7 +452,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* 4. BOTTOM ALERT PANEL */}
+          {}
           <div className="bottom-alerts">
             <div className="alert-card">
               <div className={`alert-icon ${currentState==='fault' ? 'icon-red' : 'icon-blue'}`} style={{color: currentState==='fault'? 'var(--neon-red)' : 'var(--neon-blue)'}}>⚡</div>
@@ -490,7 +481,7 @@ export default function Dashboard() {
         </main>
       </div>
       
-      {/* DEBUG VISIBILITY BAR */}
+      {}
       <div style={{ borderTop: `1px dashed ${statusColor}`, background: 'rgba(5, 5, 10, 0.95)', padding: '8px 20px', fontFamily: 'monospace', fontSize: '0.8rem', color: 'var(--text-muted)', display: 'flex', justifyContent: 'space-between', zIndex: 100, position: 'relative' }}>
          <div>
             <span style={{color: statusColor, fontWeight: 'bold'}}>[STATE: {currentState.toUpperCase()}]</span> 
