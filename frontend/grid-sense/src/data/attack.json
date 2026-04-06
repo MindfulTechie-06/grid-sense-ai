@@ -1,0 +1,7 @@
+[
+  {"time":0,"voltage":230,"current":5,"frequency":50},
+  {"time":1,"voltage":300,"current":8,"frequency":51},
+  {"time":2,"voltage":150,"current":2,"frequency":48},
+  {"time":3,"voltage":280,"current":9,"frequency":52},
+  {"time":4,"voltage":100,"current":3,"frequency":47}
+]
