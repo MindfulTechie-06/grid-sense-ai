@@ -253,20 +253,20 @@ export default function Dashboard() {
         {}
         <aside className="sidebar">
           <div className="sidebar-header">
-             <div className="brand">GRIDSENSE AI</div>
+             <div className="brand">GRID 7.1</div>
              <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                ☰
              </button>
           </div>
           
           <div className={`sidebar-content ${isMobileMenuOpen ? 'open' : ''}`}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginTop: '20px', padding: '15px', background: 'rgba(0,170,255,0.05)', borderRadius: '8px', border: '1px solid rgba(0,170,255,0.2)' }}>
-                <div style={{width:'50px', height:'50px', background:'rgba(0,170,255,0.1)', border:'2px solid var(--neon-blue)', borderRadius:'6px', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--neon-blue)', boxShadow: '0 0 10px rgba(0,170,255,0.3)'}}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginTop: '20px', padding: '15px', background: 'rgba(0,170,255,0.1)', borderRadius: '8px', border: '1px solid rgba(0,170,255,0.4)', boxShadow: '0 0 15px rgba(0,170,255,0.1)' }}>
+                <div style={{width:'50px', height:'50px', background:'rgba(0,170,255,0.2)', border:'2px solid var(--neon-blue)', borderRadius:'6px', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--neon-blue)', boxShadow: '0 0 15px var(--neon-blue)'}}>
                   <span role="img" aria-label="operator" style={{fontSize: '1.8rem'}}>🥷</span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <div style={{fontSize:'1.2rem', color:'var(--neon-blue)', fontWeight:900, letterSpacing: '1px', textShadow: '0 0 5px var(--neon-blue)'}}>OPERATOR_01</div>
-                  <div style={{fontSize:'0.85rem', color:'var(--text-muted)', fontWeight:600, letterSpacing: '2px'}}>SECTOR_7G</div>
+                  <div style={{fontSize:'1.0rem', color:'#fff', fontWeight:900, letterSpacing: '1px', textShadow: '0 0 8px var(--neon-blue)'}}>GRID_CONTROLLER_ALPHA</div>
+                  <div style={{fontSize:'0.85rem', color:'var(--neon-blue)', fontWeight:700, letterSpacing: '2px'}}>ZONE_7G</div>
                 </div>
             </div>
 
@@ -450,15 +450,15 @@ export default function Dashboard() {
                   <div className="chart-title" style={{ marginBottom: '15px' }}>AT&C LOSS ATTRIBUTION</div>
                   
                   <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: '15px', marginBottom: '20px' }}>
-                     <div style={{ background: 'rgba(255, 51, 102, 0.05)', border: '1px solid rgba(255, 51, 102, 0.2)', padding: '15px', borderRadius: '6px', textAlign: 'center', boxShadow: '0 0 10px rgba(255, 51, 102, 0.1)' }}>
+                     <div style={{ background: 'rgba(255, 85, 0, 0.05)', border: '1px solid rgba(255, 85, 0, 0.5)', padding: '15px', borderRadius: '6px', textAlign: 'center', boxShadow: '0 0 15px rgba(255, 85, 0, 0.2)' }}>
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 700, textTransform: 'uppercase' }}>Technical Loss</div>
-                        <div style={{ fontSize: '2.2rem', color: 'var(--neon-red)', fontWeight: 800, margin: '5px 0', textShadow: '0 0 8px rgba(255, 51, 102, 0.5)' }}>{technicalLoss.toFixed(1)}%</div>
+                        <div style={{ fontSize: '2.2rem', color: '#ff7700', fontWeight: 800, margin: '5px 0', textShadow: '0 0 12px rgba(255, 85, 0, 0.6)' }}>{technicalLoss.toFixed(1)}%</div>
                         <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Heat / Harmonic Loss</div>
                      </div>
                      
-                     <div style={{ background: 'rgba(250, 204, 21, 0.05)', border: '1px solid rgba(250, 204, 21, 0.2)', padding: '15px', borderRadius: '6px', textAlign: 'center', boxShadow: '0 0 10px rgba(250, 204, 21, 0.1)' }}>
+                     <div style={{ background: 'rgba(255, 204, 0, 0.05)', border: '1px solid rgba(255, 204, 0, 0.5)', padding: '15px', borderRadius: '6px', textAlign: 'center', boxShadow: '0 0 15px rgba(255, 204, 0, 0.2)' }}>
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 700, textTransform: 'uppercase' }}>Commercial Loss</div>
-                        <div style={{ fontSize: '2.2rem', color: 'var(--neon-yellow)', fontWeight: 800, margin: '5px 0', textShadow: '0 0 8px rgba(250, 204, 21, 0.5)' }}>{commercialLoss.toFixed(1)}%</div>
+                        <div style={{ fontSize: '2.2rem', color: '#ffcc00', fontWeight: 800, margin: '5px 0', textShadow: '0 0 12px rgba(255, 204, 0, 0.6)' }}>{commercialLoss.toFixed(1)}%</div>
                         <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Theft / Unmetered Usage</div>
                      </div>
                   </div>
@@ -468,9 +468,8 @@ export default function Dashboard() {
                         <span style={{ color: 'var(--text-main)' }}>Total Aggregate Loss: {totalLoss.toFixed(1)}%</span>
                         <span style={{ color: 'var(--text-muted)' }}>100% SCALE</span>
                      </div>
-                     <div style={{ height: '12px', display: 'flex', width: '100%', borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--border-color)', background: 'var(--bg-main)' }}>
-                        <div style={{ width: `${techLossWidth}%`, background: 'var(--neon-red)', boxShadow: '0 0 10px var(--neon-red)', transition: 'width 0.3s' }}></div>
-                        <div style={{ width: `${commLossWidth}%`, background: 'var(--neon-yellow)', boxShadow: '0 0 10px var(--neon-yellow)', transition: 'width 0.3s' }}></div>
+                     <div style={{ height: '12px', display: 'flex', width: '100%', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.2)', background: 'var(--bg-main)' }}>
+                        <div style={{ width: '100%', background: `linear-gradient(to right, #ff3300 0%, #ff7700 ${techLossWidth}%, #ffcc00 100%)`, boxShadow: '0 0 12px rgba(255, 136, 0, 0.5)', transition: 'background 0.3s' }}></div>
                      </div>
                   </div>
                </div>

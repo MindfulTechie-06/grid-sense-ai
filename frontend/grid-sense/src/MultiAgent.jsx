@@ -77,15 +77,15 @@ export default function MultiAgent() {
     <div className="dashboard-layout" style={{overflowY: 'auto'}}>
       {}
       <aside className="sidebar" style={{position:'sticky', top:'1rem', alignSelf:'flex-start'}}>
-        <div className="brand">GRIDSENSE AI</div>
+        <div className="brand">GRID 7.1</div>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginTop: '20px', padding: '15px', background: 'rgba(0,255,136,0.05)', borderRadius: '8px', border: '1px solid rgba(0,255,136,0.2)' }}>
-            <div style={{width:'50px', height:'50px', background:'rgba(0,255,136,0.1)', border:'2px solid var(--neon-green)', borderRadius:'6px', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--neon-green)', boxShadow: '0 0 10px rgba(0,255,136,0.3)'}}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginTop: '20px', padding: '15px', background: 'rgba(0,255,136,0.1)', borderRadius: '8px', border: '1px solid rgba(0,255,136,0.4)', boxShadow: '0 0 15px rgba(0,255,136,0.1)' }}>
+            <div style={{width:'50px', height:'50px', background:'rgba(0,255,136,0.2)', border:'2px solid var(--neon-green)', borderRadius:'6px', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--neon-green)', boxShadow: '0 0 15px var(--neon-green)'}}>
               <span role="img" aria-label="operator" style={{fontSize: '1.8rem'}}>🥷</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div style={{fontSize:'1.2rem', color:'var(--neon-green)', fontWeight:900, letterSpacing: '1px', textShadow: '0 0 5px var(--neon-green)'}}>OPERATOR_01</div>
-              <div style={{fontSize:'0.85rem', color:'var(--text-muted)', fontWeight:600, letterSpacing: '2px'}}>SECTOR_7G</div>
+              <div style={{fontSize:'1.0rem', color:'#fff', fontWeight:900, letterSpacing: '1px', textShadow: '0 0 8px var(--neon-green)'}}>GRID_CONTROLLER_ALPHA</div>
+              <div style={{fontSize:'0.85rem', color:'var(--neon-green)', fontWeight:700, letterSpacing: '2px'}}>ZONE_7G</div>
             </div>
         </div>
 
